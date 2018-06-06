@@ -10,24 +10,30 @@ namespace App\Controller;
 
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 
-class HomeController
+class HomeController extends AbstractController
 {
     /**
      * @Route("/")
      */
     public function homepage()
     {
-       return new Response('test  homepage') ;
+
+       return $this->render('homepage/home.html.twig', [
+        'title'=>'Accueil'
+
+
+       ]) ;
     }
 
     /**
      * @Route("/reservation")
      */
-    public function BookingPage()
+    public function show()
     {
-            return new Response('Future page de reservation avec formulaire');
+            return $this->render('reservation/show.html.twig');
     }
 }
 

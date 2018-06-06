@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{title}}{% endblock %}
+{% block body %}
+       <h1>{{ title }}</h1>
+<div>
+    <p>
+        Bienvenue sur le site de reservation de ticket pour l'accès au musée du Louvre.
+    </p>
+    <p>
+        Veuillez nous indiquer le choix de vos dates ci dessous en précisant le choix du matin ou de l'après midi
+    </p>
+</div>
+
+<div>
+    <fieldset>
+        <legend> Choix de votre date dans le calendrier déroulant</legend>
+        <form method="post" action="home.html.twig">
+            <input type="date" /><br/>
+            <input type="checkbox" name="Matin" /><label for="matin">Matin</label><br/>
+            <input type="checkbox" name="Après-midi" /><label for="apres midi">Après-midi</label><br/>
+        </form>
+    </fieldset>
+</div>
+{% endblock %}

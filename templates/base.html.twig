@@ -7,33 +7,41 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
         {% block stylesheets %}
+            <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+            {#<link rel="stylesheet" href="/resources/demos/style.css">#}
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
             <link rel="stylesheet" href="{{ asset('css/font-awesome.css') }}">
             <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
         {% endblock %}
     </head>
 
-    <body>
         <nav class="navbar navbar-expand-lg navbar-dark navbar-bg mb-5">
-            <a style="margin-left: 75px;" class="navbar-brand space-brand" href="#">Le Musée du Louvre</a>
+            <a style="margin-left: 75px;" class="navbar-brand space-brand" href="#">LE LOUVRE</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
+                <br><br>
           </button>
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav mr-auto">
                      <li class="nav-item">
-                       <a style="color: #fff;" class="nav-link" href="#">Les collections</a>
+                       <a style="color: #bef;" class="nav-link" href="#">INFORMATIONS PRATIQUES</a>
                      </li>
-                     <li class="nav-item">
-                       <a style="color: #fff;" class="nav-link" href="#"></a>
-                     </li>
+                    <li class="nav-item">
+                        <a style="color: #bef;" class="nav-link" href="#">EXPOSITIONS ET ACTUALTES</a>
+                    </li>
+                    <li class="nav-item">
+                        <a style="color: #bef;" class="nav-link" href="#">OEUVRES ET PALAIS</a>
+                    </li>
+                    <li class="nav-item">
+                        <a style="color: #bef;" class="nav-link" href="#">ARTS ET EDUCATION</a>
+                    </li>
                    </ul>
                 <form class="form-inline my-2 my-lg-0">
                     <input class="form-control mr-sm-2" type="search" placeholder="Chercher une oeuvre" aria-label="Chercher">
                     <button class="btn btn-info my-2 my-sm-0" type="submit">Chercher</button>
                 </form>
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item dropdown" style="margin-right: 75px;">
+                    <li class="nav-item dropdown" style="margin-right: 20px;">
                         <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <img class="nav-profile-img rounded-circle" src="images/Visage.png">
                 </a>
@@ -48,10 +56,14 @@
         </nav>
 
         {% block body %}{% endblock %}
-
-        <footer class="footer">
-            <div class="container text-center">
-                <span class="text-muted">Made by <i class="fa fa-heart" style="color: red;"></i> Dhagnere <a href="https://dhagnere.com"></a></span>
+        <hr>
+        <footer>
+            <div class="container-fluid">
+                <div class ="row">
+                    <div class="col-md-4">
+                        <span class="text-muted">Made by <i class="fas fa-angle-double-right" style="color: red;"></i> Dhagnere</span>
+                    </div>
+                </div>
             </div>
         </footer>
 

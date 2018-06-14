@@ -1,25 +1,104 @@
-{% extends 'base.html.twig' %}
+{% extends 'base.html.twig.' %}
 
 {% block title %}{{title}}{% endblock %}
 {% block body %}
-       <h1>{{ title }}</h1>
-<div>
-    <p>
-        Bienvenue sur le site de reservation de ticket pour l'accès au musée du Louvre.
-    </p>
-    <p>
-        Veuillez nous indiquer le choix de vos dates ci dessous en précisant le choix du matin ou de l'après midi
-    </p>
-</div>
 
-<div>
-    <fieldset>
-        <legend> Choix de votre date dans le calendrier déroulant</legend>
-        <form method="post" action="home.html.twig">
-            <input type="date" /><br/>
-            <input type="checkbox" name="Matin" /><label for="matin">Matin</label><br/>
-            <input type="checkbox" name="Après-midi" /><label for="apres midi">Après-midi</label><br/>
-        </form>
-    </fieldset>
-</div>
+    <div class="container">
+
+        <!-- Features Section -->
+        <!-- .row -->
+        <div class="row" id="art">
+            <div class="row justify-content-md-center">
+                <div class="col-md-auto">
+                    <div class="text-accueil">{{ 'Le musée vous accueil tous les jours de la semaine sauf le mardi.
+                     Fermetures annuelles les 1er mai, 1er novembre et 25 décembre.'|trans}}
+                     <span>{{ 'Veuillez selectionner une date dans le calendrier ci dessous, et préciser votre choix de séance (matin ou après-midi).'|trans}}</span>
+                    </div> <br>
+                </div>
+
+                <div class="col-md-auto">
+                    <img class="img-fluid" src="{{ asset('images/louvre pour bandeau.jpeg') }}">
+                    <br><br>
+                </div>
+                <!--Section date picker-->
+                    <div class="calendar-center">
+                        <div id="datepicker"> </div>
+
+                                <p>Désirez vous visiter le matin ou l'après-midi ?</p>
+                                <form action="home.html.twig">
+                                    <select name="visit-time">
+                                        <option value="matin">matin</option>
+                                        <option value="après-midi">après-midi</option>
+                                    </select>
+                                    <br><br>
+                                    <input type="submit">
+                                </form>
+
+                    </div>
+                <!--#Section date picker-->
+            </div>
+        </div>
+        <!-- #.row -->
+        <!-- #Features Section -->
+
+        <hr>
+        <!-- Section informations utiles -->
+        <div class="row">
+            <div class="col-md-4 link1-2-3">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4><i class="fa fa-fw fa-check"></i> {{ "Se rendre au musée"|trans}}</h4>
+                    </div>
+                    <div class="panel-body">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque, optio corporis quae nulla aspernatur in alias at numquam rerum ea excepturi expedita tenetur assumenda voluptatibus eveniet incidunt dicta nostrum quod?</p>
+                        <a href="#" class="btn btn-default">{{ "En savoir plus"|trans}}</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 id="activity"><i class="fa fa-fw fa-check"></i> {{ 'Les expositions en cours'|trans}}</h4>
+                    </div>
+                    <div class="panel-body">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque, optio corporis quae nulla aspernatur in alias at numquam rerum ea excepturi expedita tenetur assumenda voluptatibus eveniet incidunt dicta nostrum quod?</p>
+                        <a href="#" class="btn btn-default">{{ "En savoir plus"|trans}}</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 id="expo"><i class="fa fa-fw fa-check"></i> {{ "Les activités du musée"|trans}}</h4>
+                    </div>
+                    <div class="panel-body">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque, optio corporis quae nulla aspernatur in alias at numquam rerum ea excepturi expedita tenetur assumenda voluptatibus eveniet incidunt dicta nostrum quod?</p>
+                        <a href="#" class="btn btn-default">{{ "En savoir plus"|trans}}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
+
+
+
+        {% block javascripts %}
+
+
+            <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+           {#DatePicker calendar#}
+            <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+            <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+            <script>
+                $( function() {
+                    $( "#datepicker" ).datepicker();
+                } );
+            </script>
+            {#End of datepicker Calendar#}
+            <script>
+                $('.dropdown-toggle').dropdown();
+            </script>
+        {% endblock %}

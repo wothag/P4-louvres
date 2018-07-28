@@ -7,37 +7,13 @@
 
         <!-- Features Section -->
         <!-- .row -->
-        <div class="row" id="art">
-            <div class="row justify-content-md-center">
-                <div class="col-md-auto">
-                    <div class="text-accueil">{{ 'Le musée vous accueil tous les jours de la semaine sauf le mardi.
-                     Fermetures annuelles les 1er mai, 1er novembre et 25 décembre.'|trans}}
-                     <span>{{ 'Veuillez selectionner une date dans le calendrier ci dessous, et préciser votre choix de séance (matin ou après-midi).'|trans}}</span>
-                    </div> <br>
-                </div>
+        {#<div class="row" id="art">#}
+            <!--Section form-->
 
-                <div class="col-md-auto">
-                    <img class="img-fluid" src="{{ asset('images/louvre pour bandeau.jpeg') }}">
-                    <br><br>
-                </div>
-                <!--Section date picker-->
-                    <div class="calendar-center">
-                        <div id="datepicker"> </div>
+                    <a class="btn btn-warning" href="{{ path('app_billetterie') }}" role="button">ACCEDER A LA BILLETTERIE EN LIGNE</a>
 
-                                <p>Désirez vous visiter le matin ou l'après-midi ?</p>
-                                <form action="home.html.twig">
-                                    <select name="visit-time">
-                                        <option value="matin">matin</option>
-                                        <option value="après-midi">après-midi</option>
-                                    </select>
-                                    <br><br>
-                                    <input type="submit">
-                                </form>
-
-                    </div>
-                <!--#Section date picker-->
-            </div>
-        </div>
+                <!--#Section form-->
+        {#</div>#}
         <!-- #.row -->
         <!-- #Features Section -->
 
@@ -83,22 +59,4 @@
 
 
 
-        {% block javascripts %}
 
-
-            <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
-            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
-           {#DatePicker calendar#}
-            <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-            <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-            <script>
-                $( function() {
-                    $( "#datepicker" ).datepicker();
-                } );
-            </script>
-            {#End of datepicker Calendar#}
-            <script>
-                $('.dropdown-toggle').dropdown();
-            </script>
-        {% endblock %}

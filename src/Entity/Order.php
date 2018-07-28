@@ -26,22 +26,12 @@ class Order
     /**
      * @ORM\Column(type="datetime")
      */
-    private $date_order;
-
-    /**
-     * @ORM\Column(type="datetime")
-     */
     private $date_visit;
 
     /**
      * @ORM\Column(type="integer")
      */
     private $nb_tickets;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $visitor;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Ticket", mappedBy="order_ref")
@@ -70,17 +60,6 @@ class Order
         return $this;
     }
 
-    public function getDateOrder(): ?\DateTimeInterface
-    {
-        return $this->date_order;
-    }
-
-    public function setDateOrder(\DateTimeInterface $date_order): self
-    {
-        $this->date_order = $date_order;
-
-        return $this;
-    }
 
     public function getDateVisit(): ?\DateTimeInterface
     {
@@ -102,18 +81,6 @@ class Order
     public function setNbTickets(int $nb_tickets): self
     {
         $this->nb_tickets = $nb_tickets;
-
-        return $this;
-    }
-
-    public function getVisitor(): ?string
-    {
-        return $this->visitor;
-    }
-
-    public function setVisitor(string $visitor): self
-    {
-        $this->visitor = $visitor;
 
         return $this;
     }

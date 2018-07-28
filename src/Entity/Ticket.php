@@ -42,11 +42,31 @@ class Ticket
      */
     private $order_ref;
 
+
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Customer", inversedBy="id_customer")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\Column(type="string", length=255)
      */
-    private $id_customers;
+    private $name;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $surname;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $birthday;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $country;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $reduction;
 
     public function getId()
     {
@@ -121,6 +141,66 @@ class Ticket
     public function setIdCustomers(?Customer $id_customers): self
     {
         $this->id_customers = $id_customers;
+
+        return $this;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): self
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    public function getSurname(): ?string
+    {
+        return $this->surname;
+    }
+
+    public function setSurname(string $surname): self
+    {
+        $this->surname = $surname;
+
+        return $this;
+    }
+
+    public function getBirthday(): ?\DateTimeInterface
+    {
+        return $this->birthday;
+    }
+
+    public function setBirthday(\DateTimeInterface $birthday): self
+    {
+        $this->birthday = $birthday;
+
+        return $this;
+    }
+
+    public function getCountry(): ?string
+    {
+        return $this->country;
+    }
+
+    public function setCountry(string $country): self
+    {
+        $this->country = $country;
+
+        return $this;
+    }
+
+    public function getReduction(): ?bool
+    {
+        return $this->reduction;
+    }
+
+    public function setReduction(bool $reduction): self
+    {
+        $this->reduction = $reduction;
 
         return $this;
     }

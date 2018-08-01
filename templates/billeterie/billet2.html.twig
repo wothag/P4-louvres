@@ -10,7 +10,8 @@
 {% block body %}
 <body>
     <div class="container">
-        {% for msg in app.session.flashbag.get('succes') %}
+        {{ dump(order) }}
+        {% for msg in app.session.flashbag.get('success') %}
             <div class="alert alert-success">
                 {{ msg }}
             </div>

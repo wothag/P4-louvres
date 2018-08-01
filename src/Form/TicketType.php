@@ -4,6 +4,7 @@ namespace App\Form;
 
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -14,7 +15,9 @@ class TicketType extends AbstractType
         $builder
             ->add('Nom')
             ->add('Prenom')
-            ->add('Date')
+            ->add('Naissance', BirthdayType::class, [
+                'label'=>'Date de Naissance'
+            ])
             ->add('Pays')
             ->add('reduction')
         ;

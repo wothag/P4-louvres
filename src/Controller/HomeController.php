@@ -13,6 +13,7 @@ use App\Form\OrderType;
 use App\Form\TicketType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
@@ -26,7 +27,6 @@ class HomeController extends AbstractController
     public function homepage(Request $request, SessionInterface $session)
     {
        $session = $request->getSession();
-       $session->set("id", "8");
        return $this->render('homepage/home.html.twig', [
         'title'=>'Bienvenue sur la billetterie en ligne du Louvre'
 
@@ -41,14 +41,15 @@ class HomeController extends AbstractController
     public function billeterie(Request $request)
     {
         $session = $request->getSession();
-        $session->set("id", "8");
+
         $order=new order;
-        $form=$this->createForm(OrderType::class);
+
+        $form=$this->createForm(OrderType::class, $order);
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()) {
 
-
+            $session->set("order",$order);
             $em=$this->getDoctrine()->getManager();
             $em->persist($order);
 
@@ -73,11 +74,26 @@ class HomeController extends AbstractController
     public function billeterie2(Request $request)
     {
         $session = $request->getSession();
-        $session->set("id", "8");
-        $formTicket=$this->createForm(TicketType::class);
-        dump($session);
+        $order= $session->get("order");
+        $form=$this->createFormBuilder();
+
+        //CREATION D UNE BOUCLE POUR AFFICHAGE FORMULAIRE SELON LA VAR EECUPEREE
+        $nombre_tickets = $order->getNbTickets();
+        for ($i=0; $i<$nombre_tickets; $i++)
+        {
+            $form->add($i,TicketType::class, [
+                "label"=>"visiteur".($i+1)
+            ]);
+        }
+        $form->add('save', SubmitType::class, [
+            'label'=>'continuer'
+
+        ]);
+
+        $formTicket=$form->getForm();
 
         return $this->render('billeterie/billet2.html.twig',[
+            'order'=>$order,
             'title'=>'Choix du billet',
             'ticketForm'=>$formTicket->createView()
         ]);

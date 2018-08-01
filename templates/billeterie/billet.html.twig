@@ -21,11 +21,6 @@
                     {{ form_widget(orderForm)}}
                     <br>
                 <button type="submit" class="btn-warning">Etape suivante</button>
-                {% for msg in app.session.flashbag.get('succes') %}
-                <div class="alert alert-succes">
-                    {{ msg }}
-                </div>
-                {% endfor %}
             </div>
 
         </div>

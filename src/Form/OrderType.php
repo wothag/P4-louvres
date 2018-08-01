@@ -28,11 +28,12 @@ class OrderType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('mail')
             ->add('date_visit', DateType::class, [
                 'label'=>'Date de visite :',
                 'widget'=>'single_text',
                 'html5'=>false,
-                'format'=>'dd-MM-yyyy',
+                'format'=>'d/M/y',
                 'attr'=>[
                     'class'=>'datepicker'
                 ]

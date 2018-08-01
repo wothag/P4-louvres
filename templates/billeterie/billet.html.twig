@@ -8,6 +8,7 @@
 
 {% block title %}{{title}}{% endblock %}
 {% block body %}
+    <body>
 
     <div class="container">
 
@@ -19,15 +20,19 @@
                 {{ form_start(orderForm)}}
                     {{ form_widget(orderForm)}}
                     <br>
-                <a class="btn btn-warning" href="{{ path('app_billetterie2') }}" role="submit">Etape suivante</a>
+                <button type="submit" class="btn-warning">Etape suivante</button>
+                {% for msg in app.session.flashbag.get('succes') %}
+                <div class="alert alert-succes">
+                    {{ msg }}
+                </div>
+                {% endfor %}
             </div>
 
         </div>
         <!-- #.row -->
         <!-- #Features Section -->
-
-
     </div>
+    </body>
 {% endblock %}
 
 

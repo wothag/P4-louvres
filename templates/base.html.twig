@@ -13,7 +13,6 @@
             <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
         {% endblock %}
     </head>
-
         <nav class="navbar navbar-expand-lg navbar-dark navbar-bg mb-5">
             <a style="margin-left: 75px;" class="navbar-brand space-brand" href="{{ path('app_homepage') }}">LE LOUVRE</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -53,8 +52,16 @@
                 {#</ul>#}
             </div>
         </nav>
+    {% block body %}
+        <body>
+        {% for msg in app.session.flashbag.get('success') %}
+            <div class="alert alert-success">
+                {{ msg }}
+            </div>
+        {% endfor %}
+        </body>
+    {% endblock %}
 
-        {% block body %}{% endblock %}
         <hr>
         <footer>
             <div class="container-fluid">
@@ -65,6 +72,7 @@
                 </div>
             </div>
         </footer>
+
     {% block javascripts %}
         <script
         src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

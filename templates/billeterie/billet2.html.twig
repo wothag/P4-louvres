@@ -8,14 +8,18 @@
 
 {% block title %}{{title}}{% endblock %}
 {% block body %}
-
+<body>
     <div class="container">
-
+        {% for msg in app.session.flashbag.get('succes') %}
+            <div class="alert alert-success">
+                {{ msg }}
+            </div>
+        {% endfor %}
         <!-- Features Section -->
         <!-- .row -->
         <div class="row">
             <div class="col-sm-12">
-                               {{ form_start(ticketForm)}}
+                {{ form_start(ticketForm)}}
                 {{ form_widget(ticketForm)}}
                 <br>
                 <button type="submit" class="btn btn-primary">Etape suivante</button>
@@ -23,12 +27,14 @@
 
             </div>
 
+
         </div>
         <!-- #.row -->
         <!-- #Features Section -->
 
 
     </div>
+</body>
 {% endblock %}
 
 

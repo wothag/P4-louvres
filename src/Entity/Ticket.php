@@ -36,12 +36,6 @@ class Ticket
      */
     private $id_customer;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Order", inversedBy="id_tickets")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $order_ref;
-
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -67,6 +61,11 @@ class Ticket
      * @ORM\Column(type="boolean")
      */
     private $reduction;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Commande", inversedBy="id_tickets")
+     */
+    private $commande;
 
     public function getId()
     {
@@ -201,6 +200,18 @@ class Ticket
     public function setReduction(bool $reduction): self
     {
         $this->reduction = $reduction;
+
+        return $this;
+    }
+
+    public function getCommande(): ?Commande
+    {
+        return $this->commande;
+    }
+
+    public function setCommande(?Commande $commande): self
+    {
+        $this->commande = $commande;
 
         return $this;
     }

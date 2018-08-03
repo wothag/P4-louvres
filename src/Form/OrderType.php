@@ -28,7 +28,7 @@ class OrderType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('mail')
+            ->add('mail', EmailType::class)
             ->add('date_visit', DateType::class, [
                 'label'=>'Date de visite :',
                 'widget'=>'single_text',
@@ -38,13 +38,13 @@ class OrderType extends AbstractType
                     'class'=>'datepicker'
                 ]
             ])
-            ->add('nb_tickets');
+            ->add('nb_tickets', IntegerType::class);
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'App\Entity\Order',
+            'data_class' => 'App\Entity\Commande',
         ));
     }
 }

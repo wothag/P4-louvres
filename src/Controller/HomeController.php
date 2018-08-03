@@ -8,9 +8,10 @@
 
 namespace App\Controller;
 
-use App\Entity\Order;
+use App\Entity\Commande;
 use App\Form\OrderType;
 use App\Form\TicketType;
+use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -29,42 +30,44 @@ class HomeController extends AbstractController
        $session = $request->getSession();
        return $this->render('homepage/home.html.twig', [
         'title'=>'Bienvenue sur la billetterie en ligne du Louvre'
-
        ]) ;
-
     }
 
     /**
      * @Route("/billetterie" , name="app_billetterie")
      */
 
-    public function billeterie(Request $request)
+    public function billeterie(Request $request, EntityManagerInterface $em)
     {
         $session = $request->getSession();
+        $commande=new commande;
 
-        $order=new order;
 
-        $form=$this->createForm(OrderType::class, $order);
+        $form=$this->createForm(OrderType::class, $commande);
         $form->handleRequest($request);
 
-        if($form->isSubmitted() && $form->isValid()) {
+        if ($request->isMethod('POST'))
+        {
+            if($form->isSubmitted() && $form->isValid())
+            {
+                //  creation de la session order, on y place l'objet order contenu dans $order //
+                $session->set("commande",$commande);
 
-            $session->set("order",$order);
-            $em=$this->getDoctrine()->getManager();
-            $em->persist($order);
+                //  on appelle l'EntityManager
+                $em=$this->getDoctrine()->getManager();
+                $em->persist($commande);
+                $em->flush();
 
-            $this->addFlash('success' , "merci passons à l'étape suivante");
-            return $this->redirectToRoute('app_billetterie2');
-
+                $this->addFlash('success' , "Etape suivante : Veuillez renseigner chaque ticket.");
+                //  on redirect vers la deuxieme phase
+                return $this->redirectToRoute('app_billetterie2');
+            }
         }
-
-
-        return $this->render('billeterie/billet.html.twig',[
-            'title'=>'Billetterie en ligne',
-            'orderForm'=>$form->createView(),
-        ]);
-
-
+        else
+            return $this->render('billeterie/billet.html.twig',[
+                'title'=>'Billetterie en ligne',
+                'orderForm'=>$form->createView(),
+            ]);
     }
 
     /**
@@ -74,29 +77,42 @@ class HomeController extends AbstractController
     public function billeterie2(Request $request)
     {
         $session = $request->getSession();
-        $order= $session->get("order");
+        $commande= $session->get("commande");
         $form=$this->createFormBuilder();
 
-        //CREATION D UNE BOUCLE POUR AFFICHAGE FORMULAIRE SELON LA VAR EECUPEREE
-        $nombre_tickets = $order->getNbTickets();
+
+        //CREATION D UNE BOUCLE POUR AFFICHAGE FORMULAIRE SELON LA VAR RECUPEREE//
+
+        $nombre_tickets = $commande->getNbTickets();
         for ($i=0; $i<$nombre_tickets; $i++)
         {
             $form->add($i,TicketType::class, [
-                "label"=>"visiteur".($i+1)
+                "label"=>"Visiteur N° ".($i+1)
             ]);
         }
-        $form->add('save', SubmitType::class, [
-            'label'=>'continuer'
+        $form->add('submit', SubmitType::class, [
+            'label'=>'Etape Suivante'
 
         ]);
 
         $formTicket=$form->getForm();
 
         return $this->render('billeterie/billet2.html.twig',[
-            'order'=>$order,
+            'order'=>$commande,
             'title'=>'Choix du billet',
             'ticketForm'=>$formTicket->createView()
         ]);
+    }
+
+    public function resume_order(Request $request)
+    {
+        $session = $request->getSession();
+        $resume_order = new resume;
+
+
+
+
+
     }
 }
 
